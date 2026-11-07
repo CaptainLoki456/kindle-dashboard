@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "name": "Dashboard",
+      "priority": 0,
+      "items": [
+        { "name": "Einmal testen", "priority": 1, "action": "sh /mnt/us/extensions/dashboard/einmal.sh" },
+        { "name": "Dashboard starten", "priority": 2, "action": "sh /mnt/us/extensions/dashboard/start.sh", "exitmenu": true }
+      ]
+    }
+  ]
+}

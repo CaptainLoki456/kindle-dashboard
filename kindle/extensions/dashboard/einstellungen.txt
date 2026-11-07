@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------
+#  Kindle-Dashboard – Einstellungen
+#  Nur die Werte rechts vom = ändern, Anführungszeichen lassen.
+# ---------------------------------------------------------------
+
+# Adresse deiner Bilder (aus GitHub Pages), OHNE Dateinamen, mit / am Ende.
+# Beispiel: https://maxmuster.github.io/kindle-dashboard/a8f3k29xq7/
+BILD_URL="https://DEIN-GITHUB-NAME.github.io/kindle-dashboard/DEIN-GEHEIMER-PFAD/"
+
+# Bildschirmauflösung: "auto" erkennt sie selbst.
+# Falls das nicht klappt, eine davon eintragen:
+#   Paperwhite 1/2 (2012-2014) ......... 758x1024
+#   Paperwhite 3/4 (2015-2018) ......... 1072x1448
+#   Paperwhite 5 / Signature (2021) .... 1236x1648
+#   Paperwhite 6 (2024) ................ 1264x1680
+AUFLOESUNG="auto"
+
+# Wie oft das Bild geholt wird (Minuten) und um wie viele Minuten nach
+# der vollen/halben Stunde (GitHub braucht ein paar Minuten zum Erzeugen).
+INTERVALL_MINUTEN=30
+VERSATZ_MINUTEN=12
+
+# Nachtruhe: in dieser Zeit wird nicht aktualisiert (spart Akku).
+# Gleiche Zahl bei VON und BIS = keine Nachtruhe.
+NACHTRUHE_VON=23
+NACHTRUHE_BIS=6
+
+# Alle wie viele Aktualisierungen der Bildschirm komplett "geblitzt" wird
+# (entfernt Geisterbilder auf E-Ink).
+VOLLE_AUFFRISCHUNG_ALLE=4
+
+# Zwischen den Aktualisierungen in den Tiefschlaf gehen (Akku hält Wochen).
+# Falls der Kindle danach nicht von selbst aufwacht: auf "nein" stellen
+# und den Kindle am Ladekabel lassen.
+TIEFSCHLAF="ja"
+
+# Unter wie viel Prozent Akku ein Hinweis eingeblendet wird.
+AKKU_WARNUNG=15
+
+# Zeitzone (POSIX-Format). Deutschland/Österreich/Schweiz:
+TZ="CET-1CEST,M3.5.0,M10.5.0/3"
+
+# Nur falls im Log "SSL certificate problem" steht: auf "ja" stellen.
+UNSICHERES_HTTPS="nein"
