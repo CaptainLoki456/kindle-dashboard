@@ -1,0 +1,55 @@
+name: Dashboard aktualisieren
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Bilder erzeugen
+        env:
+          STADT: ${{ vars.STADT }}
+          ORTSNAME: ${{ vars.ORTSNAME }}
+          BREITE: ${{ vars.BREITE }}
+          LAENGE: ${{ vars.LAENGE }}
+          ZEITZONE: ${{ vars.ZEITZONE || 'Europe/Berlin' }}
+          KALENDER_TAGE: ${{ vars.KALENDER_TAGE || '7' }}
+          ICS_URLS: ${{ secrets.ICS_URLS }}
+          AUSGABE: site/${{ secrets.GEHEIMER_PFAD }}
+        run: |
+          if [ -z "${{ secrets.GEHEIMER_PFAD }}" ]; then
+            echo "::error::Secret GEHEIMER_PFAD fehlt"; exit 1
+          fi
+          python render.py
+          touch site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - uses: actions/deploy-pages@v4
